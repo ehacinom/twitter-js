@@ -19,6 +19,7 @@
   "homepage": "https://github.com/tryandbry/twitter-js#readme",
   "dependencies": {
     "express": "^4.15.2",
+    "lodash": "^4.17.4",
     "nunjucks": "^3.0.0"
   }
 }
