@@ -1,11 +1,21 @@
-const express = require( 'express' );
 // creates an instance of an express application
+const express = require( 'express' );
 const app = express(); 
-var morgan = require('morgan');
+
+// templating
 var nunjucks = require('nunjucks');
 
-//app.use(morgan('tiny'));
-app.use('/special',morgan('tiny'));
+// routing
+const routes = require('./routes');
+app.use('/', routes);
+
+// logging
+var morgan = require('morgan');
+app.use('/special', morgan('tiny'));
+
+// static files
+app.use(express.static('public'));
+
 
 // BEGIN NUNJUCKS SECTION
 // *************************
@@ -18,13 +28,13 @@ var locals = {
     ]
 };
 ///// alt nunjucks configuration
-// have res.render work with html files
-// app.set('view engine', 'html'); 
-// when giving html files to res.render, tell it to use nunjucks
-// app.engine('html', nunjucks.render); 
 // point nunjucks to the proper directory for templates
 // nunjucks.configure('views'); 
-//
+
+// have res.render work with html files
+app.set('view engine', 'html'); 
+// when giving html files to res.render, tell it to use nunjucks
+app.engine('html', nunjucks.render); 
 nunjucks.configure('views', {noCache: true,
                              express: app});
 
@@ -33,7 +43,7 @@ nunjucks.configure('views', {noCache: true,
 // *************************
 
 app.get('/',function(request,response){
-    response.render('index.html',locals);
+    response.render('index', locals);
 });
 
 app.listen(3000);

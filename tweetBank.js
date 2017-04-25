@@ -46,6 +46,6 @@ module.exports.add( 'Ashialll', 'this is it');
 
 
 // test
-console.log('hi')
-console.log(list())
-console.log(module.exports.find({name: 'Ashialll'}))
+// console.log('hi')
+// console.log(list())
+// console.log(module.exports.find({name: 'Ashialll'}))
