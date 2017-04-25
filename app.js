@@ -2,9 +2,13 @@
 const express = require( 'express' );
 const app = express(); 
 
+// socket
+const socketio = require('socket.io');
+
 // templating
 var nunjucks = require('nunjucks');
 
+// body-parser
 // html + json parsing
 // middleware has to be before routing
 const bodyParser = require('body-parser');
@@ -32,9 +36,10 @@ app.engine('html', nunjucks.render);
 nunjucks.configure('views', { noCache: true,
                               express: app });
 
-// routing
-const routes = require('./routes');
-app.use('/', routes);
-
 // listening
-app.listen(3000);
+var server = app.listen(3000);
+var io = socketio.listen(server);
+
+// routing with sockets
+const routes = require('./routes');
+app.use('/', routes(io));

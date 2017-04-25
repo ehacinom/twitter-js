@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Sticky Footer Navbar Template for Bootstrap</title>
+    <title>'ello</title>
 
     <!-- Bootstrap core CSS -->
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
@@ -59,7 +59,7 @@
         </div>
       </div>
 
-      <!-- Begin page content -->
+      <!-- Begin page content (index.html) -->
       <div class="container">
         {% block content %}Welcome to Twitter.js{% endblock %}
       </div> <!-- end container -->
@@ -78,5 +78,28 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    
+    <!-- client-side Socket.io -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        // load library above
+        // because socket.io server is on the same server as express server
+        // io.connect() without args
+        var socket = io.connect();
+        
+        // connection?
+        // socket.on('connect', function () {
+        //     console.log('Socket.io connected.')
+        // });
+        
+        // update DOM from new tweet for everybody
+        socket.on('newTweet', function (tweet) {
+            console.log('new Tweet');
+            alert(tweet.name + ' ' + tweet.content);
+            
+            // adding tweet to DOM
+            
+        });
+    </script>
   </body>
 </html>
