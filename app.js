@@ -1,5 +1,6 @@
 const express = require( 'express' );
-const app = express(); // creates an instance of an express application
+// creates an instance of an express application
+const app = express(); 
 var morgan = require('morgan');
 var nunjucks = require('nunjucks');
 
@@ -16,10 +17,13 @@ var locals = {
         { name: 'Hermione'}
     ]
 };
-// ALTERNATE
-// app.set('view engine', 'html'); // have res.render work with html files
-// app.engine('html', nunjucks.render); // when giving html files to res.render, tell it to use nunjucks
-// nunjucks.configure('views'); // point nunjucks to the proper directory for templates
+///// alt nunjucks configuration
+// have res.render work with html files
+// app.set('view engine', 'html'); 
+// when giving html files to res.render, tell it to use nunjucks
+// app.engine('html', nunjucks.render); 
+// point nunjucks to the proper directory for templates
+// nunjucks.configure('views'); 
 //
 nunjucks.configure('views', {noCache: true,
                              express: app});
