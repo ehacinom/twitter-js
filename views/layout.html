@@ -82,9 +82,9 @@
     <!-- client-side Socket.io -->
     <script src="/socket.io/socket.io.js"></script>
     <script>
-        // load library above
+        // load socket.io library
         // because socket.io server is on the same server as express server
-        // io.connect() without args
+        // run io.connect() without args
         var socket = io.connect();
         
         // connection?
@@ -94,11 +94,12 @@
         
         // update DOM from new tweet for everybody
         socket.on('newTweet', function (tweet) {
-            console.log('new Tweet');
-            alert(tweet.name + ' ' + tweet.content);
-            
             // adding tweet to DOM
-            
+            var innerhtml = '<a href="/users/' + tweet.name + '">' + 
+                            tweet.name + '</a> - ' + tweet.content,
+                li = document.createElement('li');
+            li.innerHTML = innerhtml;
+            document.getElementById('tweet-display').appendChild(li);
         });
     </script>
   </body>

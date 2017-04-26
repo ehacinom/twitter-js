@@ -19,10 +19,11 @@ app.use(jsonEncoder);
 
 // logging
 var morgan = require('morgan');
-app.use('/special', morgan('tiny'));
+// app.use('/special', morgan('tiny'));
 
 // static files
-app.use(express.static('public'));
+var path = require('path');
+app.use('/static', express.static(path.join(__dirname, 'public')));
 
 // nunjucks
 /////// alt nunjucks configuration
