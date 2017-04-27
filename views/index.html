@@ -16,9 +16,10 @@
       <!-- display tweets here -->
       <ul id='tweet-display'>
           {% for tweet in tweets %}
-            <li><a href="/users/{{tweet.name}}">{{tweet.name}}</a> - {{tweet.content}}</li>
+            <li><a href="/users/{{tweet.name}}">{{tweet.name}}</a> - <a href="/tweets/{{tweet.id}}">{{tweet.content}}</a></li>
           {% endfor %}
       </ul>
+      
       <!-- form for POSTing tweets -->
       {% if showForm %}
         <form action="/tweets" method="POST">

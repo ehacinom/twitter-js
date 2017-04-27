@@ -96,7 +96,8 @@
         socket.on('newTweet', function (tweet) {
             // adding tweet to DOM
             var innerhtml = '<a href="/users/' + tweet.name + '">' + 
-                            tweet.name + '</a> - ' + tweet.content,
+                            tweet.name + '</a> - <a href="/tweets/' + tweet.id
+                            + '">' + tweet.content + '</a>',
                 li = document.createElement('li');
             li.innerHTML = innerhtml;
             document.getElementById('tweet-display').appendChild(li);
