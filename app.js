@@ -23,7 +23,8 @@ var morgan = require('morgan');
 
 // static files
 var path = require('path');
-app.use('/static', express.static(path.join(__dirname, 'public')));
+// app.use('/static', express.static(path.join(__dirname, 'public')));
+app.use('static', express.static('public'));
 
 // nunjucks
 /////// alt nunjucks configuration

@@ -14,9 +14,18 @@
     <div class="col-md-9">
     
       <!-- display tweets here -->
-      <ul id='tweet-display'>
-          {% for tweet in tweets %}
-            <li><a href="/users/{{tweet.name}}">{{tweet.name}}</a> - <a href="/tweets/{{tweet.id}}">{{tweet.content}}</a></li>
+      <ul id='tweet-display' style="list-style: none;">
+          {% for tweet in tweets | reverse %}
+            <li class='tweetbox'>
+                <!-- <a href='ehacinom.com' class='image'> -->
+                <img src='https://pbs.twimg.com/profile_images/2450268678/olxp11gnt09no2y2wpsh_normal.jpeg'>
+                <!-- </a> -->
+                <div>
+                    <a href="/users/{{tweet.name}}">{{tweet.name}}</a>
+                    <br/>
+                    <a href="/tweets/{{tweet.id}}">{{tweet.content}}</a>
+                </div>
+            </li>
           {% endfor %}
       </ul>
       

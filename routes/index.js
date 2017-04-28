@@ -54,7 +54,6 @@ module.exports = function (io) {
 
     // posting a tweet
     router.post('/tweets', function (req, res) {
-        // 
         let name = req.body.name, 
             tweet = req.body.text;
         
@@ -71,17 +70,11 @@ module.exports = function (io) {
                                   'tweets.user_id = users.id where ' + 
                                   'users.name = $1 and tweets.content = $2';
                 client.query(q_new_tweet, [name, tweet], function (err, result) {
-                    console.log(result);
-                    let newTweet = result.rows[0];
-                    io.sockets.emit('newTweet', newTweet);
+                    // emit new tweet
+                    io.sockets.emit('newTweet', result.rows[0]);
                 });
             });
-            
-
         };
-        
-        // without database
-        // tweetBank.add(name, tweet);
         
         // with database
         // does user exist?
